@@ -18,15 +18,15 @@
   
   
   <title>Clickhouse基础 | Bigdata</title>
-  <meta name="description" content="##集群分片信息可以使用：select cluster,shard_num,replica_num,host_name from system.clusters;查询获取。 ###select * from system.merges;###selete * system.mutations;  突变，修改表结构的突变操作，alter###select * from system.replicat">
+  <meta name="description" content="集群分片信息可以使用：select cluster,shard_num,replica_num,host_name from system.clusters;查询获取。123select * from system.merges;selete * system.mutations;  突变，修改表结构的突变操作，alterselect * from system.replication_queue">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Clickhouse基础">
 <meta property="og:url" content="https://ccy-master.github.io/opsknow/2025/03/06/Clickhouse%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="BigData大数据">
-<meta property="og:description" content="##集群分片信息可以使用：select cluster,shard_num,replica_num,host_name from system.clusters;查询获取。 ###select * from system.merges;###selete * system.mutations;  突变，修改表结构的突变操作，alter###select * from system.replicat">
+<meta property="og:description" content="集群分片信息可以使用：select cluster,shard_num,replica_num,host_name from system.clusters;查询获取。123select * from system.merges;selete * system.mutations;  突变，修改表结构的突变操作，alterselect * from system.replication_queue">
 <meta property="og:locale">
 <meta property="article:published_time" content="2025-03-06T03:22:33.000Z">
-<meta property="article:modified_time" content="2026-05-25T02:09:45.523Z">
+<meta property="article:modified_time" content="2026-05-25T04:07:44.744Z">
 <meta property="article:author" content="Ccy-Master">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
@@ -322,13 +322,11 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>##集群分片信息可以使用：select cluster,shard_num,replica_num,host_name from system.clusters;查询获取。</p>
-<p>###select * from system.merges;<br>###selete * system.mutations;  突变，修改表结构的突变操作，alter<br>###select * from system.replication_queue;  同步队列</p>
-<p>##安全集群同时开启 8123&#x2F;8443 端口：SSL_NONESSL_BOTH_ENABLE </p>
-<p>##查询引擎和数据量：<br>###select database, name, engine, total_rows from system.tables where database!&#x3D;’system’</p>
-<p>##clickhouse 统计表数据量大小：<br>###select is_temporary, metadata_modification_time, create_table_query,<br>engine_full, total_rows, total_bytes, lifetime_rows, lifetime_bytes, engine, data_paths,<br>metadata_path, uuid, storage_policy from system.tables where database &#x3D; ‘%s’ and name &#x3D; ‘%s’;</p>
-<p>##查询参数配置：<br>###show settings like ‘max_memory_usage’;</p>
-<p>###SELECT *<br>FROM system.settings<br>WHERE name IN (‘max_execution_time’, ‘receive_timeout’)</p>
+        <h2 id="集群分片信息可以使用：select-cluster-shard-num-replica-num-host-name-from-system-clusters-查询获取。"><a href="#集群分片信息可以使用：select-cluster-shard-num-replica-num-host-name-from-system-clusters-查询获取。" class="headerlink" title="集群分片信息可以使用：select cluster,shard_num,replica_num,host_name from system.clusters;查询获取。"></a>集群分片信息可以使用：select cluster,shard_num,replica_num,host_name from system.clusters;查询获取。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * from system.merges;</span><br><span class="line">selete * system.mutations;  突变，修改表结构的突变操作，alter</span><br><span class="line"><span class="keyword">select</span> * from system.replication_queue;  同步队列</span><br></pre></td></tr></table></figure>
+<h2 id="安全集群同时开启-8123-8443-端口：SSL-NONESSL-BOTH-ENABLE"><a href="#安全集群同时开启-8123-8443-端口：SSL-NONESSL-BOTH-ENABLE" class="headerlink" title="安全集群同时开启 8123&#x2F;8443 端口：SSL_NONESSL_BOTH_ENABLE"></a>安全集群同时开启 8123&#x2F;8443 端口：SSL_NONESSL_BOTH_ENABLE</h2><h2 id="查询引擎和数据量："><a href="#查询引擎和数据量：" class="headerlink" title="查询引擎和数据量："></a>查询引擎和数据量：</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select database, name, engine, total_rows from system.tables where database!=&#x27;system&#x27;</span><br></pre></td></tr></table></figure>
+<h2 id="clickhouse-统计表数据量大小："><a href="#clickhouse-统计表数据量大小：" class="headerlink" title="clickhouse 统计表数据量大小："></a>clickhouse 统计表数据量大小：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> is_temporary, metadata_modification_time, create_table_query,</span><br><span class="line">engine_full, total_rows, total_bytes, lifetime_rows, lifetime_bytes, engine, data_paths,</span><br><span class="line">metadata_path, uuid, storage_policy from system.tables <span class="built_in">where</span> database = <span class="string">&#x27;%s&#x27;</span> and name = <span class="string">&#x27;%s&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="查询参数配置："><a href="#查询参数配置：" class="headerlink" title="查询参数配置："></a>查询参数配置：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">show settings like <span class="string">&#x27;max_memory_usage&#x27;</span>;</span><br><span class="line"></span><br><span class="line">SELECT *</span><br><span class="line">FROM system.settings</span><br><span class="line">WHERE name IN (<span class="string">&#x27;max_execution_time&#x27;</span>, <span class="string">&#x27;receive_timeout&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
