@@ -18,15 +18,15 @@
   
   
   <title>Kafka运维基础 | Bigdata</title>
-  <meta name="description" content="kafka 操作kafka节点没有缩容功能，数据不会自动搬迁，包周期集群退订一个节点，需要客户手动搬迁该节点上的kafka数据，不然会造成数据丢失 安全集群端口：21007；非安全集群端口：9092 kafka-topics.sh –create –zookeeper 192.168.0.180：2181&#x2F;kafka –partitions 3 –replication-factor 3">
+  <meta name="description" content="kafka 操作kafka节点没有缩容功能，数据不会自动搬迁，包周期集群退订一个节点，需要客户手动搬迁该节点上的kafka数据，不然会造成数据丢失 安全集群端口：21007；非安全集群端口：9092 1234kafka-topics.sh --create --zookeeper 192.168.0.180：2181&#x2F;kafka --partitions 3 --replication-facto">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kafka运维基础">
 <meta property="og:url" content="https://ccy-master.github.io/opsknow/2026/05/25/Kafka%E8%BF%90%E7%BB%B4%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="BigData大数据">
-<meta property="og:description" content="kafka 操作kafka节点没有缩容功能，数据不会自动搬迁，包周期集群退订一个节点，需要客户手动搬迁该节点上的kafka数据，不然会造成数据丢失 安全集群端口：21007；非安全集群端口：9092 kafka-topics.sh –create –zookeeper 192.168.0.180：2181&#x2F;kafka –partitions 3 –replication-factor 3">
+<meta property="og:description" content="kafka 操作kafka节点没有缩容功能，数据不会自动搬迁，包周期集群退订一个节点，需要客户手动搬迁该节点上的kafka数据，不然会造成数据丢失 安全集群端口：21007；非安全集群端口：9092 1234kafka-topics.sh --create --zookeeper 192.168.0.180：2181&#x2F;kafka --partitions 3 --replication-facto">
 <meta property="og:locale">
 <meta property="article:published_time" content="2026-05-25T03:53:25.000Z">
-<meta property="article:modified_time" content="2026-05-25T03:55:58.518Z">
+<meta property="article:modified_time" content="2026-05-25T04:13:24.448Z">
 <meta property="article:author" content="Ccy-Master">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
@@ -324,8 +324,9 @@
       
         <h2 id="kafka-操作"><a href="#kafka-操作" class="headerlink" title="kafka 操作"></a>kafka 操作</h2><p>kafka节点没有缩容功能，数据不会自动搬迁，包周期集群退订一个节点，需要客户手动搬迁该节点上的kafka数据，不然会造成数据丢失</p>
 <p>安全集群端口：21007；非安全集群端口：9092</p>
-<p>kafka-topics.sh –create –zookeeper 192.168.0.180：2181&#x2F;kafka –partitions 3 –replication-factor 3 –topic  bigdata<br>kafka-console-producer.sh –broker-list 192.168.0.133:9092 –topic eirs –producer.config &#x2F;opt&#x2F;client&#x2F;Kafka&#x2F;kafka&#x2F;config&#x2F;producer.properties<br>kafka-console-consumer.sh –topic eimrs –bootstrap-server 192.168.0.133:9092  –consumer.config &#x2F;opt&#x2F;client&#x2F;Kafka&#x2F;kafka&#x2F;config&#x2F;consumer.properties<br>kafka-consumer-groups.sh –list –bootstrap-server 192.168.0.143:9092 –command-config ..&#x2F;config&#x2F;consumer.properties</p>
-<p>删除topic ：<a target="_blank" rel="noopener" href="https://support.huaweicloud.com/trouble-mrs/mrs_03_0108.html">https://support.huaweicloud.com/trouble-mrs/mrs_03_0108.html</a><br>kafka-topics.sh –delete –topic eimrs –zookeeper 192.168.0.180:2181&#x2F;kafka<br>kafka-topics.sh –list –zookeeper 192.168.0.180:2181&#x2F;kafka<br>kafka-topics.sh –describe –topic eimrs –zookeeper 192.168.0.180:2181&#x2F;kafka<br>kafka-reassign-partitions.sh –zookeeper 192.168.0.180:2181&#x2F;kafka –reassignment-json-file add-replicas-reassignment.json –execute</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics.sh --create --zookeeper 192.168.0.180：2181/kafka --partitions 3 --replication-factor 3 --topic  bigdata</span><br><span class="line">kafka-console-producer.sh --broker-list 192.168.0.133:9092 --topic eirs --producer.config /opt/client/Kafka/kafka/config/producer.properties</span><br><span class="line">kafka-console-consumer.sh --topic eimrs --bootstrap-server 192.168.0.133:9092  --consumer.config /opt/client/Kafka/kafka/config/consumer.properties</span><br><span class="line">kafka-consumer-groups.sh --list --bootstrap-server 192.168.0.143:9092 --command-config ../config/consumer.properties</span><br></pre></td></tr></table></figure>
+<p>删除topic ：<a target="_blank" rel="noopener" href="https://support.huaweicloud.com/trouble-mrs/mrs_03_0108.html">https://support.huaweicloud.com/trouble-mrs/mrs_03_0108.html</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">kafka-topics.sh --delete --topic eimrs --zookeeper 192.168.0.180:2181/kafka</span><br><span class="line">kafka-topics.sh --list --zookeeper 192.168.0.180:2181/kafka</span><br><span class="line">kafka-topics.sh --describe –topic eimrs --zookeeper 192.168.0.180:2181/kafka</span><br><span class="line">kafka-reassign-partitions.sh --zookeeper 192.168.0.180:2181/kafka --reassignment-json-file add-replicas-reassignment.json --execute</span><br></pre></td></tr></table></figure>
 <h2 id="kafka-JMX-监控"><a href="#kafka-JMX-监控" class="headerlink" title="kafka JMX 监控"></a>kafka JMX 监控</h2><p>使用java 工具jconsole 监控：<a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/303176">https://bbs.huaweicloud.com/blogs/303176</a></p>
 
       
